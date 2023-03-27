@@ -1,0 +1,110 @@
+# Loads default set of integrations. Do not remove.
+default_config:
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+#themes: !include themes.yaml
+
+http:
+  #base_url: https://ha.n0ne.me
+  server_port: 8123
+#  api_password: 765df342f7---_____0d445324145fgdgdTEHRTJJ43acb4a90d459f465cdc
+#  ssl_certificate: /var/lib/letsencrypt/live/n0ne.duckdns.org/fullchain.pem
+#  ssl_key: /var/lib/letsencrypt/live/n0ne.duckdns.org/privkey.pem
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 192.168.39.44
+    - 192.168.39.51
+    - 192.168.39.254
+  ip_ban_enabled: false
+#  login_attempts_threshold: 4
+
+homeassistant:
+  external_url: "https://n0ne.duckdns.org"
+#  external_url: "https://ha.n0ne.me"
+  internal_url: "http://192.168.39.52:8123"
+  auth_providers:
+   - type: homeassistant
+#   - type: trusted_networks
+#     trusted_networks:
+#        - 192.168.39.0/24
+  name: Huguenots
+  latitude: 49.035788
+  longitude: 3.954281
+  unit_system: metric
+  currency: EUR
+  time_zone: "Europe/Paris"
+  country: FR
+  temperature_unit: C
+#  media_dirs:
+#    media: "/media"
+#    recordings: "/mnt/recordings"
+  
+notify:
+  - name: FreeSMS
+    platform: free_mobile
+    username: 10549140
+    access_token: !secret free
+    
+#sensor:
+#  - platform: niu
+#    username: picobn@gmail.com
+#    password: Corniflex12
+#    country: 33
+#    scooter_id: 0
+#    monitored_variables:
+#      - BatteryCharge          # Battery
+#      - Isconnected            # Battery
+#      - TimesCharged           # Battery
+#      - temperatureDesc        # Battery
+#      - Temperature            # Battery
+#      - BatteryGrade           # Battery
+#      - CurrentSpeed           # Moto
+#      - ScooterConnected       # Moto (has attributes lon. lat. for plotting on a map)
+#      - IsCharging             # Moto
+#      - IsLocked               # Moto
+#      - TimeLeft               # Moto
+#      - EstimatedMileage       # Moto
+#      - centreCtrlBatt         # Moto
+#      - HDOP                   # Moto
+#      - Longitude              # Moto
+#      - Latitude               # Moto
+#      - totalMileage           # OverAll
+#      - DaysInUse              # OverAll
+#      - Distance               # Distance
+#      - RidingTime             # Distance
+#      - LastTrackStartTime     # LastTrack
+#      - LastTrackEndTime       # LastTrack
+#      - LastTrackDistance      # LastTrack
+#      - LastTrackAverageSpeed  # LastTrack
+#      - LastTrackRidingtime    # LastTrack
+#      - LastTrackThumb         # LastTrack
+
+#frontend:
+#  themes:
+#    happy:
+#      primary-color: pink
+#      text-primary-color: purple
+#      mdc-theme-primary: plum
+#    sad:
+#      primary-color: steelblue
+#      modes:
+#        dark:
+#          secondary-text-color: slategray
+#    day_and_night:
+#      primary-color: coral
+#      modes:
+#        light:
+#          secondary-text-color: olive
+#        dark:
+#          secondary-text-color: slategray
+
+frontend:
+  themes: !include_dir_merge_named themes
+
+my:
